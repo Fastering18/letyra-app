@@ -4,6 +4,7 @@ import './halaman/login.dart';
 import './halaman/chat.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();  
   HttpOverrides.global = new MyHttpOverrides();
   runApp(MyApp());
 }
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
       '/login': (BuildContext context) => LoginPage(title: 'Login'),
       '/chat': (BuildContext context) => MainChatPage(title: 'Main chat page'),
       },
+      initialRoute: "/login",
     );
   }
 }

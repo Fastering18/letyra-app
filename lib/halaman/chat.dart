@@ -1,14 +1,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:socket_io_client/socket_io_client.dart' as socketio;
 import '../src/utilities.dart';
 
 socketio.Socket connectAndListen() {
     socketio.Socket socket = socketio.io('https://letyra.tk',
         socketio.OptionBuilder()
-      .setTransports(['websocket']).enableAutoConnect().build());
+      .setTransports(['websocket']).enableAutoConnect().enableForceNew().build());
 
     socket.onConnect((_) {
       print('connected');
@@ -147,10 +146,13 @@ class _MainChatPageState extends State<MainChatPage> {
                   color: Colors.black.withOpacity(0.12),
                   borderRadius: BorderRadius.circular(6),
                 ),
+                //constraints: BoxConstraints(maxHeight: 500, minHeight: 30, maxWidth: 750, minWidth: 50),
                 padding: EdgeInsets.all(15),
+                //width: 750,
                 child: Center(
                   child: Text(
                     pesan["content"] ?? '',
+                    softWrap: true,
                     style: TextStyle(fontSize: 15, color: Colors.black.withOpacity(sayaSendiri? 1 : 0.8))
                     )
                 )
@@ -183,7 +185,7 @@ class _MainChatPageState extends State<MainChatPage> {
           children: [
             Text("baka chat logs"),
             TextButton(onPressed: _logOut, child: Text("Log out")),
-            SizedBox(height: height * 0.1),
+            SizedBox(height: height * 0.05),
             Flexible( 
             child: buildMessageList(),
             ),
