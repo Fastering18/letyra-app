@@ -6,6 +6,7 @@ A flutter realtime chat app backend using socket.io NodeJS
 
 ## Chat page  
 <img src="https://i.gyazo.com/873278cd8fe46dce6c6f5313b1d7eae1.png" alt="chat-page" style="width:30px; height:40px;"/>  
-
-Fastering18, Letyra  
-This application currently on WIP state.  
+  
+  
+### Fastering18, Letyra 2021  
+### This application currently on WIP state.  
