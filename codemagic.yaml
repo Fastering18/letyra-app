@@ -2,18 +2,12 @@ workflows:
   ios-workflow:
     name: iOS Workflow
     # instance_type: mac_mini
-    max_build_duration: 120
+    max_build_duration: 300
     environment:
       vars:
         XCODE_WORKSPACE: "Runner.xcworkspace"
         XCODE_SCHEME: "Runner"                
-        # https://docs.codemagic.io/code-signing-yaml/signing-ios/
-        APP_STORE_CONNECT_ISSUER_ID: Encrypted(...) # <-- Put your encrypted App Store Connect Issuer Id here 
-        APP_STORE_CONNECT_KEY_IDENTIFIER: Encrypted(...) # <-- Put your encrypted App Store Connect Key Identifier here 
-        APP_STORE_CONNECT_PRIVATE_KEY: Encrypted(...) # <-- Put your encrypted App Store Connect Private Key here 
-        CERTIFICATE_PRIVATE_KEY: Encrypted(...) # <-- Put your encrypted Certificate Private Key here 
-        APPLE_ID: Encrypted(...) # <-- Put your encrypted Apple Id email address here
-        APPLE_APP_SPECIFIC_PASSWORD: Encrypted(...) # <-- Put your encrypted App Specific password here
+        # https://docs.codemagic.io/code-signing-yaml/signing-ios
         BUNDLE_ID: "io.codemagic.flutteryaml" # <-- Put your bundle id here
         APP_STORE_ID: 1111111111 # <-- Use the TestFlight Apple id number (An automatically generated ID assigned to your app) found under General > App Information > Apple ID. 
       flutter: stable
@@ -49,7 +43,6 @@ workflows:
         script: |
           flutter build ipa --release \
           --build-name=1.0.0 \
-          --build-number=$(($(app-store-connect get-latest-testflight-build-number "$APP_STORE_ID") + 1)) \
           --export-options-plist=/Users/builder/export_options.plist          
     artifacts:
       - build/ios/ipa/*.ipa
@@ -70,6 +63,3 @@ workflows:
         notify:
           success: true               # To receive a notification when a build succeeds
           failure: false              # To not receive a notification when a build fails
-      app_store_connect:   # https://docs.codemagic.io/publishing-yaml/distribution              
-        apple_id: $APPLE_ID    
-        password: $APPLE_APP_SPECIFIC_PASSWORD
