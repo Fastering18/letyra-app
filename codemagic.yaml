@@ -14,15 +14,15 @@ workflows:
       xcode: latest
       cocoapods: default
     scripts:
-      - name: Set up keychain to be used for codesigning using Codemagic CLI 'keychain' command
-        script: |
-                    keychain initialize
-      - name: Fetch signing files
-        script: |
-                    app-store-connect fetch-signing-files $BUNDLE_ID --type IOS_APP_STORE --create
-      - name: Use system default keychain
-        script: |
-                    keychain add-certificates
+      #- name: Set up keychain to be used for codesigning using Codemagic CLI 'keychain' command
+      #  script: |
+      #              keychain initialize
+      #- name: Fetch signing files
+      #  script: |
+      #              app-store-connect fetch-signing-files $BUNDLE_ID --type IOS_APP_STORE --create
+      #- name: Use system default keychain
+      #  script: |
+      #              keychain add-certificates
       - name: Set up code signing settings on Xcode project
         script: |
                     xcode-project use-profiles
