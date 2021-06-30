@@ -1,4 +1,4 @@
-name: flutter_application_1
+name: letyra
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -31,6 +31,8 @@ dependencies:
   socket_io_client: 2.0.0-beta.4-nullsafety.0
   http: ^0.13.3
   shared_preferences: ^2.0.6
+  firebase_core: ^1.3.0
+  firebase_messaging: ^10.0.2
 
 dev_dependencies:
   flutter_test:
